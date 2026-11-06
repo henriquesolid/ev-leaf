@@ -1,0 +1,1 @@
+Leaf Engine Sound v0.9 — publique o conteúdo desta pasta no Netlify. Mantenha audio/ ao lado de index.html. Marchas e velocidade são apenas simuladas; nenhuma troca real no Nissan Leaf. Teste estacionado em P.
