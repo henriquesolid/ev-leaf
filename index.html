@@ -2,14 +2,47 @@
 <html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#080c14"><title>Procar Leaf · M1 Sound Engine</title>
 <style>
 :root{font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;color:#eaf0fa;background:#080c14;color-scheme:dark}*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 50% -20%,#1b2940,#080c14 68%)}main{width:min(860px,100%);margin:auto;padding:18px 18px 52px}header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:6px 0 22px}.logo{display:flex;align-items:center;gap:12px}.mark{background:linear-gradient(135deg,#ec512c,#b3203c);width:42px;height:42px;display:grid;place-items:center;border-radius:13px;font-size:22px;font-weight:900;box-shadow:0 6px 24px #d8314055}.kicker{font-size:11px;letter-spacing:.14em;color:#9aadc7;text-transform:uppercase}h1{font-size:23px;letter-spacing:-.03em;margin:2px 0}.chip{border:1px solid #37445a;border-radius:99px;padding:7px 10px;font-size:11px;color:#b5c2d5;white-space:nowrap}.card{border:1px solid #263245;background:#111a29e8;border-radius:18px;padding:20px;margin-bottom:14px;box-shadow:0 8px 30px #0003}.hero{background:linear-gradient(150deg,#18243a,#101927 55%,#141a2a)}.muted{color:#9baac1;font-size:13px}.row{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}.row.tight{flex-wrap:nowrap}.value{font-weight:800;letter-spacing:-.06em;font-variant-numeric:tabular-nums}.big{font-size:clamp(55px,11vw,88px);line-height:1}.unit{font-size:15px;letter-spacing:0;color:#94a8c5;margin-left:8px;font-weight:600}.sub{font-size:13px;color:#93a3bc;margin-top:6px}.metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:22px}.metric{border-top:1px solid #2b3a50;padding-top:15px}.metric b{display:block;font-size:28px;font-variant-numeric:tabular-nums}.metric small{color:#93a3bc;font-size:11px;letter-spacing:.07em}.rpmbar{height:8px;border-radius:20px;background:#2e3748;overflow:hidden;margin-top:17px}.rpmbar>div{background:linear-gradient(90deg,#349bcd,#57c597 45%,#f2b643 74%,#df434d 96%);height:100%;width:0%;transition:width .05s}.sectiontitle{font-size:15px;font-weight:750;margin:0 0 14px}.pills{display:flex;gap:8px}.pill{background:#182538;border:1px solid #34445c;color:#c5d1e2;border-radius:11px;padding:12px 17px;font:inherit;font-size:14px;font-weight:650;cursor:pointer}.pill.selected{background:#b63142;border-color:#e0525a;color:white}.primary{width:100%;border:0;background:linear-gradient(100deg,#e34b3d,#be2843);color:white;font:inherit;font-weight:800;border-radius:13px;padding:17px;cursor:pointer;font-size:16px;touch-action:manipulation}.primary.stop{background:#28394f;color:#ebf1fa}.secondary{border:1px solid #43546b;border-radius:12px;background:#1b2b40;color:#e3ebf6;padding:13px 16px;font:inherit;font-weight:650;cursor:pointer}.secondary:disabled{opacity:.45}.controlgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.slider{width:100%;accent-color:#dc4c4d;min-height:37px;touch-action:pan-x}.label{font-size:13px;font-weight:650;color:#d4dfed}.note{line-height:1.55;color:#9cacc2;font-size:13px}.footnote{margin-top:18px;font-size:12px;color:#7489a4;line-height:1.5}label.checkbox{display:flex;gap:9px;align-items:center;color:#becbda;font-size:13px}input[type=checkbox]{accent-color:#d54649;width:18px;height:18px}.status{font-size:12px;color:#a8bbd1;min-height:17px}#peak{color:#ffad5b;visibility:hidden;font-weight:700}#peak.active{visibility:visible}button:focus-visible,input:focus-visible{outline:2px solid #77aaff;outline-offset:2px}details summary{cursor:pointer;color:#c9d6eb;font-size:13px}details p{color:#91a5c2;font-size:12px;line-height:1.5}@media(max-width:480px){main{padding:12px 12px 40px}.card{padding:16px}.chip{font-size:10px}.metrics{gap:8px}.metric b{font-size:24px}.controlgrid{grid-template-columns:1fr}.big{font-size:58px}.pills{flex-wrap:wrap}}
+
+.mode-toggle{display:flex;gap:8px;flex-wrap:wrap;margin:4px 0 12px}
+.mode-toggle button{flex:1 1 180px}
+.mode-toggle .selected{background:#b63142;border-color:#e0525a;color:#fff}
+.statusline{color:#a8bdd4;font-size:12px;line-height:1.5;margin:8px 0 10px}
+.diag-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin:14px 0}
+.diag-grid .secondary{font-size:13px;padding:12px 8px}
+#diagnosticSummary{color:#d1e0ef;font-size:13px;line-height:1.65}
+#diagnosticResults,#devLog{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;word-break:break-word;white-space:pre-wrap;color:#acc1d9;font-size:11px;overflow:auto;max-height:280px;line-height:1.5}
+#manualLab[hidden],#jsonPreview[hidden]{display:none}
+#jsonPreview{width:100%;background:#080e18;color:#e2ecfb;border:1px solid #374c64;border-radius:9px;padding:10px;font-size:11px;min-height:150px}
+@media(max-width:480px){.diag-grid{grid-template-columns:1fr 1fr}}
 </style></head><body><main>
-<header><div class="logo"><div class="mark">M1</div><div><div class="kicker">Leaf Engine Sound · Procar aprovado</div><h1>Procar Leaf</h1></div></div><div class="chip">v4 · TORQUE + P/N/D</div></header>
+<header><div class="logo"><div class="mark">M1</div><div><div class="kicker">Leaf Engine Sound · Procar aprovado</div><h1>Procar Leaf</h1></div></div><div class="chip">v5 · LEAF + DIAGNÓSTICO</div></header>
 <section class="card hero"><div class="row"><div><div class="kicker">BMW M1 PROCAR · ÁUDIO + LEAF</div><div class="row tight" style="justify-content:flex-start;gap:0"><div class="value big" id="rpm">900</div><span class="unit">RPM</span></div><div class="sub" id="engineState">Motor parado</div></div><div id="peak">LIMITADOR</div></div><div class="rpmbar"><div id="rpmFill"></div></div><div class="metrics"><div class="metric"><small>VELOCIDADE · <span id="speedSource">SIMULAÇÃO</span></small><b><span id="speed">0</span> <small>km/h</small></b></div><div class="metric"><small>MARCHA</small><b id="gear">1</b></div><div class="metric"><small>ACELERADOR</small><b><span id="pedal">0</span><small>%</small></b></div></div></section>
-<section class="card"><div class="row" style="margin-bottom:14px"><div><h2 class="sectiontitle" style="margin:0 0 4px">Bluetooth · OBDBLE</h2><div class="muted" id="bleStatus">Não conectado · o laboratório funciona sem carro</div></div><button class="secondary" id="bleBtn">Conectar</button></div><div class="row" style="margin-bottom:13px"><label class="checkbox"><input type="checkbox" id="realMode">Usar pedal real + velocidade CAN</label><label class="checkbox"><input type="checkbox" id="gpsFallback" checked>GPS se CAN indisponível</label></div><div id="selectorSection" style="display:none;padding:12px 0 16px"><div class="row" style="margin-bottom:8px"><span class="label">Seletor Leaf · automático (com opção manual)</span><span class="muted" id="selectorStatus">P · marcha lenta</span></div><div class="pills" id="selector" role="group" aria-label="Posição do seletor do Leaf"><button type="button" class="pill selected" data-selector="P" aria-pressed="true">P</button><button type="button" class="pill" data-selector="N" aria-pressed="false">N</button><button type="button" class="pill" data-selector="D" aria-pressed="false">D · Drive</button></div><p class="note" style="margin:8px 0 0">O app lê automaticamente P/R/N/D/ECO pelo CAN. Enquanto a leitura ainda não estiver disponível, use P/N/D manualmente. Não altere os controles durante a condução.</p></div><div class="row" style="margin-bottom:12px"><span class="muted" id="torqueStatus">Torque real: aguardando · e-Pedal por torque quando disponível</span></div><button class="primary" id="startBtn">▶ Iniciar motor e áudio</button><p class="status" id="status" role="status">Inicia o áudio e, no modo Leaf, o GPS e as leituras OBD. O simulador manual continua disponível.</p><div class="row" style="margin-top:13px"><span class="label">Modo de condução</span><div class="pills" id="modes"><button class="pill selected" data-mode="sport">Sport</button><button class="pill" data-mode="normal">Normal</button></div></div></section>
-<section class="card"><div class="row"><h2 class="sectiontitle">Acelerador manual · laboratório</h2><span class="label" id="sliderReadout">0%</span></div><input class="slider" type="range" id="throttle" min="0" max="100" value="0" step="1" aria-label="Posição do acelerador"><div class="controlgrid" style="margin-top:14px"><button class="secondary" id="fullThrottle">Segurar para acelerar 100%</button><button class="secondary" id="release">Soltar acelerador · 0%</button></div><div class="controlgrid" style="margin-top:10px"><button class="secondary" id="brake">Segurar freio</button><button class="secondary" id="demo">▶ Teste de condução automático</button></div><p class="note">No laboratório, o pedal controla o carro simulado. No Leaf, preservamos o pedal real, usando 0–84% como escala sonora máxima. O torque medido determina carga ou regeneração quando disponível. Velocidade CAN/GPS e marcha automática são independentes.</p></section>
-<section class="card"><h2 class="sectiontitle">Som</h2><div class="row"><label class="label" for="volume">Volume</label><span class="label" id="volValue">35%</span></div><input class="slider" type="range" id="volume" min="0" max="100" value="35" step="1"><div class="row" style="margin-top:12px"><label class="checkbox"><input type="checkbox" id="freeRev">RPM livre (teste parado)</label><label class="checkbox"><input type="checkbox" id="limiter">Som do limitador (experimental)</label></div></section>
-<section class="card"><h2 class="sectiontitle">Marchas</h2><div class="row"><label class="checkbox"><input type="checkbox" id="autoGears" checked>Troca automática de 6 marchas</label><div class="pills"><button class="secondary" id="down">−</button><button class="secondary" id="up">+</button></div></div><p class="note">Sport troca mais perto da faixa alta. No modo Leaf, a velocidade vem da VCM (CAN) ou do GPS; o RPM virtual acompanha velocidade e marcha, sem quedas artificiais.</p></section>
-<details class="card"><summary>Dev · diagnóstico e exportação</summary><div style="margin-top:14px" class="row"><button class="secondary" id="devTest">Testar comunicação</button><button class="secondary" id="exportLog">Exportar JSON</button></div><pre id="devLog" style="font-size:11px;overflow:auto;max-height:250px;white-space:pre-wrap;color:#a9bfd5"></pre><p class="muted" id="devResult">Sem testes.</p><button class="secondary" id="checkAudioFiles" style="margin-top:8px">Verificar WAVs publicados</button><p class="muted" id="audioFileStatus"></p><p>O motor de áudio preserva a versão aprovada do laboratório e usa os cinco WAVs do M1 Procar, incluindo o limitador opcional, com o princípio de mistura e ajuste em cents do projeto Engine Audio de Mark Easting. Integra Bluetooth BLE, GPS e consultas OBD de leitura. A lógica sonora permanece a mesma. Os WAVs são os mesmos já utilizados anteriormente. Projeto original: <a style="color:#adcfff" href="https://github.com/markeasting/engine-audio">github.com/markeasting/engine-audio</a>.</p></details>
+<section class="card"><div class="row" style="margin-bottom:14px"><div><h2 class="sectiontitle" style="margin:0 0 4px">Bluetooth · OBDBLE</h2><div class="muted" id="bleStatus">Não conectado · o laboratório funciona sem carro</div></div><button class="secondary" id="bleBtn">Conectar</button></div><div class="mode-toggle" role="group" aria-label="Origem do acelerador">
+<button type="button" class="pill selected" id="modeLeaf" aria-pressed="true">🚗 Leaf · pedal real</button>
+<button type="button" class="pill" id="modeLab" aria-pressed="false">🧪 Testar sem carro</button>
+</div><input type="checkbox" id="realMode" checked hidden>
+<label class="checkbox"><input type="checkbox" id="gpsFallback" checked>Usar GPS quando a velocidade CAN estiver indisponível</label>
+<div class="statusline" id="gpsStatus" role="status">GPS: será solicitado ao pressionar Iniciar.</div><div id="selectorSection" style="display:none;padding:12px 0 16px"><div class="row" style="margin-bottom:8px"><span class="label">Seletor Leaf · automático (com opção manual)</span><span class="muted" id="selectorStatus">P · marcha lenta</span></div><div class="pills" id="selector" role="group" aria-label="Posição do seletor do Leaf"><button type="button" class="pill selected" data-selector="P" aria-pressed="true">P</button><button type="button" class="pill" data-selector="N" aria-pressed="false">N</button><button type="button" class="pill" data-selector="D" aria-pressed="false">D · Drive</button></div><p class="note" style="margin:8px 0 0">O app lê automaticamente P/R/N/D/ECO pelo CAN. Enquanto a leitura ainda não estiver disponível, use P/N/D manualmente. Não altere os controles durante a condução.</p></div><div class="row" style="margin-bottom:12px"><span class="muted" id="torqueStatus">Torque real: aguardando · e-Pedal por torque quando disponível</span></div><button class="primary" id="startBtn">▶ Iniciar motor e áudio</button><p class="status" id="status" role="status">Inicia o áudio e, no modo Leaf, o GPS e as leituras OBD. O simulador manual continua disponível.</p><div class="row" style="margin-top:13px"><span class="label">Modo de condução</span><div class="pills" id="modes"><button class="pill selected" data-mode="sport">Sport</button><button class="pill" data-mode="normal">Normal</button></div></div></section>
+<section class="card" id="manualLab" hidden><div class="row"><h2 class="sectiontitle">Teste sem carro · laboratório</h2><span class="label" id="sliderReadout">0%</span></div><input class="slider" type="range" id="throttle" min="0" max="100" value="0" step="1" aria-label="Posição do acelerador"><div class="controlgrid" style="margin-top:14px"><button class="secondary" id="fullThrottle">Segurar para acelerar 100%</button><span class="note" style="align-self:center">Ao soltar o botão, o acelerador volta a 0%.</span></div><div class="controlgrid" style="margin-top:10px"><button class="secondary" id="brake">Segurar freio</button><button class="secondary" id="demo">▶ Teste de condução automático</button></div><p class="note">No laboratório, use o slider ou segure o botão. Ao soltar, a aceleração termina automaticamente. O motor do Procar Lab aprovado permanece intacto.</p><div class="row" style="margin-top:14px"><label class="checkbox"><input type="checkbox" id="autoGears" checked>Troca automática de 6 marchas</label><div class="pills"><button class="secondary" id="down">− marcha</button><button class="secondary" id="up">+ marcha</button></div></div></section>
+<section class="card"><h2 class="sectiontitle">Som</h2><div class="row"><label class="label" for="volume">Volume</label><span class="label" id="volValue">35%</span></div><input class="slider" type="range" id="volume" min="0" max="100" value="35" step="1"><input type="checkbox" id="freeRev" hidden><input type="checkbox" id="limiter" hidden></section>
+
+<section class="card" id="diagnostics">
+ <div class="row"><div><h2 class="sectiontitle" style="margin:0 0 4px">Diagnóstico · áudio, CAN e GPS</h2><div class="muted">Use no GitHub Pages, Netlify ou Bluefy para descobrir onde ocorre a falha.</div></div></div>
+ <div id="diagnosticSummary" style="margin:12px 0" role="status">Áudio não testado · Bluetooth não conectado · GPS aguardando</div>
+ <div class="diag-grid">
+  <button type="button" class="secondary" id="devTest">🔍 Testar tudo</button>
+  <button type="button" class="secondary" id="exportLog">⬇ Exportar JSON</button>
+  <button type="button" class="secondary" id="shareLog">↗ Compartilhar JSON</button>
+  <button type="button" class="secondary" id="copyLog">Copiar JSON</button>
+ </div>
+ <p class="status" id="devResult">Nenhum teste executado. O aplicativo registra eventos de áudio, CAN, GPS e simulação.</p>
+ <details style="margin-top:12px"><summary>Resultados e eventos detalhados</summary>
+  <pre id="diagnosticResults"></pre><pre id="devLog"></pre>
+  <button type="button" class="secondary" id="showJson" style="margin:8px 0">Mostrar JSON na tela</button>
+  <textarea id="jsonPreview" readonly hidden spellcheck="false" aria-label="Dados de diagnóstico JSON"></textarea>
+ </details>
+ <p class="note">O teste de áudio verifica HTTP, tamanho e cabeçalho RIFF/WAVE. Se o OBD estiver conectado e parado, testa os DIDs. Com leitura ativa, usa os últimos valores sem interromper o pedal. Não é necessário conduzir.</p>
+</section>
 <div class="footnote">Configure e teste com o veículo estacionado. A velocidade CAN/GPS é apenas informativa e o RPM é fictício. Não use o telefone durante a condução. O áudio pode ficar alto com auscultadores ou altifalantes externos.</div></main>
 <script>
 'use strict';
@@ -22,16 +55,44 @@ const SPEED_AT_9000=[0,36,56,77,97,116,135];
 let ctx=null,master=null,limiterNode=null,bank={},running=false,loading=false;
 let state={selector:"P",rawPedal:0,rpm:IDLE,speed:0,gear:1,throttle:0,targetThrottle:0,brake:false,mode:'sport',shiftEnds:0,shiftFrom:IDLE,shiftTo:IDLE,lastFrame:performance.now(),lastFrameS:0,demo:false,demoTime:0};
 // Live OBD adapter: independently replace the laboratory's input, never its audio mixer.
-const OBD={device:null,server:null,characteristic:null,connected:false,connecting:false,reader:false,epoch:0,pending:null,route:'',pedal:null,pedalAt:0,speed:null,speedAt:0,torque:null,torqueAt:0,gear:null,gearAt:0,gearRaw:null,gearSeen:false,torquePolls:0,gearPolls:0,lastCanAt:0,bleLog:[],polls:0,failures:0,gpsId:null,gpsSpeed:null,gpsAt:0,gpsAccuracy:null,source:'SIMULAÇÃO',manualDisconnect:false,retryTimer:null,maxAge:2200};
+const OBD={lastReplies:{},device:null,server:null,characteristic:null,connected:false,connecting:false,reader:false,epoch:0,pending:null,route:'',pedal:null,pedalAt:0,speed:null,speedAt:0,torque:null,torqueAt:0,gear:null,gearAt:0,gearRaw:null,gearSeen:false,torquePolls:0,gearPolls:0,lastCanAt:0,bleLog:[],polls:0,failures:0,gpsId:null,gpsSpeed:null,gpsAt:0,gpsAccuracy:null,source:'SIMULAÇÃO',manualDisconnect:false,retryTimer:null,maxAge:2200};
 const ts=()=>new Date().toISOString();
-function obdLog(category,message){OBD.bleLog.push({time:ts(),category,message});if(OBD.bleLog.length>350)OBD.bleLog.shift();const e=$('devLog');if(e)e.textContent=OBD.bleLog.slice(-20).map(x=>x.time.slice(11,19)+' '+x.category+' '+x.message).join('\n')}
+const DIAG={events:[],snapshots:[],assets:{},lastTest:null,lastSnapshotAt:0,audioState:'não iniciado',gpsState:'não solicitado',lastError:null};
+function eventLog(type,message,detail=null){
+ const rec={time:ts(),type,message};if(detail!==null)rec.detail=detail;
+ DIAG.events.push(rec);if(DIAG.events.length>650)DIAG.events.shift();
+ if(type==='ERROR'||type==='ASSET'||type==='GPS')DIAG.lastError=type==='ERROR'?message:DIAG.lastError;
+ if(['ERROR','ASSET','GPS','MODE','AUDIO'].includes(type))updateDiagnosticSummary();
+}
+window.addEventListener('error',e=>eventLog('ERROR','JavaScript: '+(e.message||'erro desconhecido')));
+window.addEventListener('unhandledrejection',e=>eventLog('ERROR','Promise: '+String(e.reason?.message||e.reason||'falha')));
+function updateDiagnosticSummary(){
+ const el=$('diagnosticSummary');if(!el)return;
+ const a=Object.values(DIAG.assets);const ok=a.filter(x=>x.valid).length;
+ const assetText=a.length?'WAVs '+ok+'/'+a.length:'WAVs ainda não verificados';
+ el.textContent=assetText+' · '+(OBD.connected?'OBDBLE conectado':'Bluetooth não conectado')+' · GPS '+DIAG.gpsState+' · '+DIAG.snapshots.length+' amostras de telemetria';
+}
+function collectSnapshot(t){
+ if(!running||t-DIAG.lastSnapshotAt<300)return;DIAG.lastSnapshotAt=t;
+ const fresh=performance.now();
+ DIAG.snapshots.push({time:ts(),pedalReal:OBD.pedal,pedalAgeMs:OBD.pedalAt?Math.round(fresh-OBD.pedalAt):null,
+ torqueNm:OBD.torque,torqueAgeMs:OBD.torqueAt?Math.round(fresh-OBD.torqueAt):null,
+ canKmh:OBD.speed,canAgeMs:OBD.speedAt?Math.round(fresh-OBD.speedAt):null,
+ gpsKmh:OBD.gpsSpeed,gpsAccuracyM:OBD.gpsAccuracy,selectorCan:OBD.gear,
+ selectorSource:gearFresh()?'CAN':'manual',mode:realEnabled()?'Leaf':'Lab',
+ source:OBD.source,rpm:Math.round(state.rpm),speedKmh:Math.round(state.speed*10)/10,
+ virtualGear:state.gear,audioThrottle:Math.round(state.throttle*1000)/1000});
+ if(DIAG.snapshots.length>1500)DIAG.snapshots.shift();
+}
+
+function obdLog(category,message){if(['VCM','OBD','BLE'].includes(category))eventLog('OBD',category+': '+message);OBD.bleLog.push({time:ts(),category,message});if(OBD.bleLog.length>350)OBD.bleLog.shift();const e=$('devLog');if(e)e.textContent=OBD.bleLog.slice(-20).map(x=>x.time.slice(11,19)+' '+x.category+' '+x.message).join('\n')}
 function bleStatus(text){$('bleStatus').textContent=text;obdLog('BLE',text)}
 const realEnabled=()=> $('realMode').checked;
 function canFresh(){return OBD.speed!==null&&performance.now()-OBD.speedAt<OBD.maxAge}
 function gpsFresh(){return OBD.gpsSpeed!==null&&performance.now()-OBD.gpsAt<3500&&OBD.gpsAccuracy<=45}
 function onBleNotify(ev){const v=ev.target.value,chunk=new TextDecoder().decode(new Uint8Array(v.buffer,v.byteOffset,v.byteLength));let p=OBD.pending;if(!p)return;p.buffer+=chunk;
  if(p.command==='221115'&&!p.early){const value=parsePedal(p.buffer);if(value!==null){p.early=true;OBD.pedal=value;OBD.pedalAt=performance.now();}}
- if(p.buffer.includes('>')){OBD.pending=null;clearTimeout(p.timer);p.resolve(p.buffer)}}
+ if(p.buffer.includes('>')){OBD.lastReplies[p.command]=p.buffer.slice(0,240);OBD.pending=null;clearTimeout(p.timer);p.resolve(p.buffer)}}
 function parsePedal(response){for(const line of String(response).toUpperCase().split(/[\r\n]+/)){let h=line.replace(/[^0-9A-F]/g,'');let k=h.indexOf('621115');if(k>=0&&h.length>=k+8){let raw=parseInt(h.slice(k+6,k+8),16);if(raw<=200)return raw/2}}return null}
 function parseSpeed(response){for(const line of String(response).toUpperCase().split(/[\r\n]+/)){const h=line.replace(/[^0-9A-F]/g,'');const k=h.indexOf('621102');if(k>=0&&h.length>=k+8){let value=parseInt(h.slice(k+6,k+8),16);if(Number.isFinite(value)&&value<=210)return value}}return null}
 // UDS single-frame replies: 79A 05 62 12 54 [hi] [lo], including ELM compact/no-spaces format.
@@ -96,43 +157,181 @@ async function startObdLoop(){
   }
  }finally{OBD.reader=false}
 }
-function startGpsFallback(){if(!navigator.geolocation||OBD.gpsId!==null)return;OBD.gpsId=navigator.geolocation.watchPosition(p=>{const c=p.coords;if(Number.isFinite(c.speed)&&c.speed>=0){OBD.gpsSpeed=c.speed*3.6;OBD.gpsAt=performance.now();OBD.gpsAccuracy=c.accuracy}},e=>obdLog('GPS',e.message),{enableHighAccuracy:true,maximumAge:1000,timeout:10000})}
-function stopGpsFallback(){if(OBD.gpsId!==null){navigator.geolocation.clearWatch(OBD.gpsId);OBD.gpsId=null}OBD.gpsSpeed=null;OBD.gpsAt=0}
+function gpsStatus(s){
+ DIAG.gpsState=s;const el=$('gpsStatus');if(el)el.textContent='GPS: '+s;
+ eventLog('GPS',s);updateDiagnosticSummary();
+}
+function startGpsFallback(){
+ if(!navigator.geolocation){gpsStatus('indisponível neste navegador');return}
+ if(OBD.gpsId!==null)return;
+ gpsStatus('a solicitar permissão / primeiro sinal…');
+ try{
+ OBD.gpsId=navigator.geolocation.watchPosition(p=>{
+  const c=p.coords;OBD.gpsAccuracy=Number.isFinite(c.accuracy)?c.accuracy:null;
+  if(OBD.gpsAccuracy!==null&&OBD.gpsAccuracy<=45&&Number.isFinite(c.speed)&&c.speed>=0){
+   OBD.gpsSpeed=c.speed*3.6;OBD.gpsAt=performance.now();
+   if(DIAG.gpsState.indexOf('ativo')!==0)gpsStatus('ativo · velocidade disponível · precisão '+Math.round(c.accuracy)+' m');
+  }else{
+   OBD.gpsSpeed=null;OBD.gpsAt=0;
+   const info='sinal recebido, sem velocidade válida'+(OBD.gpsAccuracy!==null?' · precisão '+Math.round(c.accuracy)+' m':'');
+   if(DIAG.gpsState!==info)gpsStatus(info);
+  }
+ },e=>{const reason=['','permissão negada','posição indisponível','tempo esgotado'][e.code]||e.message||'erro';gpsStatus(reason);obdLog('GPS',reason)},
+ {enableHighAccuracy:true,maximumAge:1000,timeout:12000});
+ }catch(e){gpsStatus('erro ao ativar: '+e.message)}
+}
+function stopGpsFallback(){if(OBD.gpsId!==null){navigator.geolocation.clearWatch(OBD.gpsId);OBD.gpsId=null}OBD.gpsSpeed=null;OBD.gpsAt=0;gpsStatus('desativado')}
 function resetRealData(){OBD.pedal=null;OBD.pedalAt=0;OBD.speed=null;OBD.speedAt=0;OBD.torque=null;OBD.torqueAt=0;OBD.gear=null;OBD.gearAt=0}
 function liveSpeed(){if(canFresh())return {kmh:OBD.speed,source:'CAN'};if($('gpsFallback').checked&&gpsFresh())return {kmh:OBD.gpsSpeed,source:'GPS'};return {kmh:null,source:'SEM VELOCIDADE'}}
-function manualControls(disabled){for(const id of ['throttle','fullThrottle','release','brake','demo','freeRev'])$(id).disabled=disabled;}
-function realSwitch(){$('selectorSection').style.display=realEnabled()?'block':'none';if(realEnabled()){state.demo=false;$('demo').textContent='▶ Teste de condução automático';state.targetThrottle=0;state.throttle=0;state.rawPedal=0;state.selector='P';renderSelector();resetRealData();$('freeRev').checked=false;manualControls(true);$('status').textContent=OBD.connected?'Modo Leaf pronto. Toque Iniciar.':'Conecte o OBDBLE; o som inicia após o toque Iniciar.';if(running){startGpsFallback();startObdLoop()}}else{manualControls(false);stopGpsFallback();$('status').textContent='Modo Lab: acelerador manual ativo';state.speed=0;state.rpm=IDLE;state.gear=1}}
+function manualControls(disabled){for(const id of ['throttle','fullThrottle','brake','demo'])$(id).disabled=disabled;}
+function realSwitch(){
+ const live=realEnabled();$('selectorSection').style.display=live?'block':'none';
+ $('manualLab').hidden=live;
+ $('modeLeaf').classList.toggle('selected',live);$('modeLeaf').setAttribute('aria-pressed',String(live));
+ $('modeLab').classList.toggle('selected',!live);$('modeLab').setAttribute('aria-pressed',String(!live));
+ if(live){
+  state.demo=false;$('demo').textContent='▶ Teste de condução automático';
+  state.targetThrottle=0;state.throttle=0;state.rawPedal=0;state.selector='P';
+  $('autoGears').checked=true;resetRealData();$('freeRev').checked=false;manualControls(true);renderSelector();
+  $('status').textContent=OBD.connected?'Modo Leaf pronto. Toque Iniciar.':'Modo Leaf: conecte o OBDBLE e toque Iniciar.';
+  if(running){if($('gpsFallback').checked)startGpsFallback();if(OBD.connected)startObdLoop()}
+ }else{
+  manualControls(false);stopGpsFallback();
+  $('status').textContent='Laboratório: acelerador manual ativo';state.speed=0;state.rpm=IDLE;state.gear=1;
+ }
+ eventLog('MODE',live?'Pedal real selecionado':'Teste sem carro selecionado');
+}
+$('modeLeaf').addEventListener('click',()=>{if(!realEnabled()){$('realMode').checked=true;realSwitch()}});
+$('modeLab').addEventListener('click',()=>{if(realEnabled()){$('realMode').checked=false;realSwitch()}});
 function effectiveSelector(){return gearFresh()?OBD.gear:state.selector}
 function renderSelector(){const auto=gearFresh(),g=effectiveSelector();for(const b of document.querySelectorAll('[data-selector]')){const chosen=b.dataset.selector===g;b.classList.toggle('selected',chosen);b.setAttribute('aria-pressed',String(chosen));b.disabled=auto}$('selectorStatus').textContent=(auto?'CAN · ':'Manual · ')+g+(g==='D'||g==='ECO'?' · marchas virtuais':' · marcha lenta');}
 function setSelector(position){if(!['P','N','D'].includes(position))return;const before=state.selector;state.selector=position;if(position!=='D'){state.gear=1;state.shiftEnds=0;state.throttle=0;state.targetThrottle=0;state.rpm=IDLE;}else if(before!=='D'){state.gear=1;state.shiftEnds=0;state.rpm=IDLE;}renderSelector();obdLog('Seletor','Posição manual: '+position);}
 $('selector').addEventListener('click',e=>{const el=e.target.closest('[data-selector]');if(el&&!gearFresh())setSelector(el.dataset.selector)});
 renderSelector();
-$('bleBtn').addEventListener('click',()=>{if(OBD.connected){OBD.manualDisconnect=true;clearTimeout(OBD.retryTimer);OBD.server.disconnect()}else requestBluetooth()});$('realMode').addEventListener('change',realSwitch);$('gpsFallback').addEventListener('change',()=>{if(!realEnabled()||!running)return;if($('gpsFallback').checked)startGpsFallback();else stopGpsFallback()});
-$('devTest').addEventListener('click',async()=>{if(!OBD.connected){$('devResult').textContent='Conecte OBDBLE primeiro.';return}if(OBD.reader){$('devResult').textContent='Leitura ativa. Pare o motor para executar o teste.';return}try{await setupRoute('pedal');const p=parsePedal(await elm('221115'));await setupRoute('speed');const v=parseSpeed(await elm('221102'));const tq=parseTorque(await elm('221254'));const gear=parseSelector(await elm('221156'));await setupRoute('pedal');$('devResult').textContent='Pedal '+(p===null?'—':p+'%')+' · CAN '+(v===null?'—':v+' km/h')+' · Torque '+(tq===null?'—':tq.toFixed(1)+' N·m')+' · P/N/D/ECO '+(gear||'—');}catch(e){$('devResult').textContent='Falha: '+e.message}});
-$('checkAudioFiles').addEventListener('click',async()=>{const parts=[];for(const [key,cfg] of Object.entries(SOURCES)){try{const resp=await fetch(PATH+cfg.file,{cache:'no-store'});parts.push(key+': HTTP '+resp.status+' · '+(resp.headers.get('content-type')||'?'))}catch(e){parts.push(key+': '+e.message)}}$('audioFileStatus').textContent=parts.join(' | ')});
-$('exportLog').addEventListener('click',()=>{const doc={version:'Procar Leaf v4',at:ts(),connected:OBD.connected,realMode:realEnabled(),pedal:OBD.pedal,pedalAge:OBD.pedalAt?Math.round(performance.now()-OBD.pedalAt):null,canSpeedKmh:OBD.speed,canAge:OBD.speedAt?Math.round(performance.now()-OBD.speedAt):null,gpsKmh:OBD.gpsSpeed,gpsAccuracy:OBD.gpsAccuracy,torqueNm:OBD.torque,torqueAgeMs:OBD.torqueAt?Math.round(performance.now()-OBD.torqueAt):null,torquePolls:OBD.torquePolls,gearCan:OBD.gear,gearAgeMs:OBD.gearAt?Math.round(performance.now()-OBD.gearAt):null,gearPolls:OBD.gearPolls,polls:OBD.polls,failures:OBD.failures,simulated:{rpm:state.rpm,gear:state.gear,selectorManual:state.selector,speed:state.speed,rawPedalPercent:state.rawPedal,audioThrottle:state.throttle},log:OBD.bleLog};const b=new Blob([JSON.stringify(doc,null,2)],{type:'application/json'}),url=URL.createObjectURL(b),a=document.createElement('a');a.href=url;a.download='procar-leaf-'+new Date().toISOString().replace(/[:.]/g,'-')+'.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)});
+$('bleBtn').addEventListener('click',()=>{if(OBD.connected){OBD.manualDisconnect=true;clearTimeout(OBD.retryTimer);OBD.server.disconnect()}else requestBluetooth()});
+$('gpsFallback').addEventListener('change',()=>{if($('gpsFallback').checked){if(realEnabled())startGpsFallback()}else stopGpsFallback()});
+
+async function checkAudioFile(key,cfg){
+ const relative=PATH+cfg.file;const url=new URL(relative,document.baseURI).href;
+ let row={file:cfg.file,relative,url,status:null,bytes:0,type:null,valid:false,error:null};
+ try{
+  const res=await fetch(url,{cache:'no-store'});row.status=res.status;row.type=res.headers.get('content-type');
+  if(!res.ok)throw new Error('HTTP '+res.status);
+  const buffer=await res.arrayBuffer();row.bytes=buffer.byteLength;
+  const hdr=new Uint8Array(buffer.slice(0,12));const text=String.fromCharCode(...hdr);
+  if(!text.startsWith('RIFF')||text.slice(8,12)!=='WAVE')throw Error('Arquivo não parece um WAV RIFF (começa por '+JSON.stringify(text.slice(0,12))+')');
+  row.valid=true;
+ }catch(e){row.error=String(e?.message||e)}
+ DIAG.assets[key]=row;
+ eventLog('ASSET',(row.valid?'OK ':'ERRO ')+relative+' → '+(row.valid?row.bytes+' bytes':row.error),{url,status:row.status});
+ updateDiagnosticSummary();return row;
+}
+async function testCanOnce(){
+ if(!OBD.connected)return {status:'sem conexão Bluetooth (conecte OBDBLE para testar)',readings:null};
+ if(OBD.reader)return {status:'telemetria ativa; ver valores recentes sem interromper leitura',readings:OBD.lastReplies};
+ const out={status:'teste direto',readings:{}};
+ try{
+  await setupRoute('pedal');out.readings.pedalRaw=await elm('221115');
+  out.readings.pedal=parsePedal(out.readings.pedalRaw);
+  await setupRoute('speed');
+  out.readings.speedRaw=await elm('221102');out.readings.speed=parseSpeed(out.readings.speedRaw);
+  out.readings.torqueRaw=await elm('221254');out.readings.torqueNm=parseTorque(out.readings.torqueRaw);
+  out.readings.selectorRaw=await elm('221156');out.readings.selector=parseSelector(out.readings.selectorRaw);
+ }catch(e){out.status='erro: '+e.message;eventLog('ERROR','Teste CAN: '+e.message)}
+ finally{try{await setupRoute('pedal')}catch(e){eventLog('ERROR','Restaurar ECU pedal: '+e.message)}}
+ return out;
+}
+async function runDiagnostics(){
+ const btn=$('devTest');btn.disabled=true;$('devResult').textContent='A verificar os WAVs publicados, GPS e OBD…';
+ // Starting GPS from a direct user tap gives the permission dialog a chance to appear on iOS.
+ if(realEnabled()&&$('gpsFallback').checked)startGpsFallback();
+ const assetResults=await Promise.all(Object.entries(SOURCES).map(([key,cfg])=>checkAudioFile(key,cfg)));
+ const obdResult=await testCanOnce();
+ const lines=['PÁGINA: '+location.href,'VERSÃO: Procar Leaf v5','MODO: '+(realEnabled()?'Leaf real':'Teste sem carro'),
+  'ÁUDIO: '+(ctx?.state||'não iniciado')+' · amostras decodificadas '+Object.keys(bank).length,
+  'BLUETOOTH: '+(OBD.connected?'conectado':'não conectado'),'GPS: '+DIAG.gpsState,
+  'OBD: '+obdResult.status, 'WAVs:'];
+ for(const x of assetResults)lines.push((x.valid?'✓ ':'✗ ')+x.url+' · '+(x.valid?x.bytes+' bytes':'HTTP '+(x.status??'?')+' '+x.error));
+ if(obdResult.readings)lines.push('CAN: '+JSON.stringify(obdResult.readings));
+ DIAG.lastTest={at:ts(),assets:assetResults,obd:obdResult,gps:DIAG.gpsState};
+ $('diagnosticResults').textContent=lines.join('\n');
+ const count=assetResults.filter(x=>x.valid).length;
+ $('devResult').textContent='Teste finalizado: '+count+'/5 WAVs válidos · '+(OBD.connected?'OBD conectado':'OBD não conectado')+' · GPS '+DIAG.gpsState+'.';
+ eventLog('TEST','Teste completo finalizado: '+count+'/5 WAVs');btn.disabled=false;
+}
+$('devTest').addEventListener('click',()=>{runDiagnostics().catch(e=>{eventLog('ERROR','Diagnóstico: '+e.message);$('devResult').textContent='Falha no diagnóstico: '+e.message;$('devTest').disabled=false})});
+function buildReport(){return {app:'Procar Leaf',version:'v5',generatedAt:ts(),page:{url:location.href,baseURI:document.baseURI,origin:location.origin,protocol:location.protocol,userAgent:navigator.userAgent,secureContext:isSecureContext},
+ settings:{realMode:realEnabled(),gpsFallback:$('gpsFallback').checked,sport:state.mode,volume:Number($('volume').value),autoGears:$('autoGears').checked},
+ audio:{context:ctx?.state||null,sampleRate:ctx?.sampleRate||null,decoded:Object.keys(bank),status:DIAG.audioState},
+ bluetooth:{connected:OBD.connected,deviceName:OBD.device?.name||null,route:OBD.route},
+ live:{selectorCAN:OBD.gear,selectorAgeMs:OBD.gearAt?Math.round(performance.now()-OBD.gearAt):null,selectorManual:state.selector,gearPolls:OBD.gearPolls,
+ pedalPercent:OBD.pedal,pedalAgeMs:OBD.pedalAt?Math.round(performance.now()-OBD.pedalAt):null,canSpeedKmh:OBD.speed,
+ canAgeMs:OBD.speedAt?Math.round(performance.now()-OBD.speedAt):null,gpsSpeedKmh:OBD.gpsSpeed,gpsAccuracyM:OBD.gpsAccuracy,
+ torqueNm:OBD.torque,torqueAgeMs:OBD.torqueAt?Math.round(performance.now()-OBD.torqueAt):null,
+ torquePolls:OBD.torquePolls,canPolls:OBD.polls,canFailures:OBD.failures,rawReplies:OBD.lastReplies},
+ simulation:{rpm:state.rpm,gear:state.gear,speedKmh:state.speed,pedalPercent:state.rawPedal,audioThrottle:state.throttle,source:OBD.source},
+ diagnostics:{assets:DIAG.assets,lastTest:DIAG.lastTest,gpsState:DIAG.gpsState,audioState:DIAG.audioState,events:DIAG.events,obdEvents:OBD.bleLog,snapshots:DIAG.snapshots}}}
+function makeJsonFile(){const json=JSON.stringify(buildReport(),null,2);const name='procar-leaf-v5-'+new Date().toISOString().replace(/[:.]/g,'-')+'.json';return {json,name,blob:new Blob([json],{type:'application/json'})}}
+$('exportLog').addEventListener('click',()=>{
+ try{
+  const {json,name,blob}=makeJsonFile();
+  const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;a.style.display='none';document.body.appendChild(a);
+  a.click();setTimeout(()=>{a.remove();URL.revokeObjectURL(url)},60000);
+  $('devResult').textContent='Download solicitado: '+name+'. Se o Bluefy não salvar, use Compartilhar JSON ou Copiar JSON.';
+  eventLog('EXPORT','Download JSON solicitado');
+ }catch(e){$('devResult').textContent='Erro exportação: '+e.message;eventLog('ERROR',e.message)}
+});
+$('shareLog').addEventListener('click',async()=>{
+ try{const {name,blob}=makeJsonFile();if(!navigator.share)throw Error('Este navegador não suporta compartilhar ficheiros. Use Copiar JSON.');
+  const file=new File([blob],name,{type:'application/json'});
+  if(navigator.canShare&&!navigator.canShare({files:[file]}))throw Error('Compartilhamento de ficheiros indisponível. Use Copiar JSON.');
+  await navigator.share({files:[file],title:'Procar Leaf — Diagnóstico v5'});
+  $('devResult').textContent='Compartilhamento concluído.';eventLog('EXPORT','Compartilhamento JSON iniciado');
+ }catch(e){$('devResult').textContent='Compartilhar: '+(e.name==='AbortError'?'cancelado':e.message)}
+});
+$('copyLog').addEventListener('click',async()=>{
+ const {json}=makeJsonFile();try{if(navigator.clipboard?.writeText){await navigator.clipboard.writeText(json)}
+  else{const field=$('jsonPreview');field.hidden=false;field.value=json;field.select();if(!document.execCommand('copy'))throw Error('Selecione o texto e copie manualmente')}
+  $('devResult').textContent='JSON copiado. Cole num ficheiro .json ou nesta conversa.';eventLog('EXPORT','JSON copiado');
+ }catch(e){const field=$('jsonPreview');field.hidden=false;field.value=json;field.focus();field.select();$('devResult').textContent='Cópia automática não permitida. O JSON está selecionado abaixo para copiar manualmente.'}
+});
+$('showJson').addEventListener('click',()=>{const field=$('jsonPreview');field.hidden=!field.hidden;if(!field.hidden){field.value=makeJsonFile().json;field.scrollIntoView({block:'nearest'})}});
 // Permissioned devices may reconnect automatically. A first pairing requires a tap.
-window.addEventListener('load',()=>{if(navigator.bluetooth?.getDevices)tryReconnect()});
+window.addEventListener('load',()=>{realSwitch();updateDiagnosticSummary();if(navigator.bluetooth?.getDevices)tryReconnect()});
 const ramp=(param,value,time=.018)=>{if(!ctx)return;const t=ctx.currentTime;param.cancelScheduledValues(t);param.setTargetAtTime(value,t,time)};
 async function audioStart(){
  if(running){stop();return}
  if(loading)return;
  loading=true;$('startBtn').disabled=true;$('status').textContent='A carregar WAVs do M1 Procar…';
+ DIAG.audioState='iniciando';eventLog('AUDIO','Carregamento iniciado');
+ // The location permission request needs to start during the click, not after WAV fetching.
+ if(realEnabled()&&$('gpsFallback').checked)startGpsFallback();
  try{
   if(!ctx){ctx=new (window.AudioContext||window.webkitAudioContext)();master=ctx.createGain();master.gain.value=0;const compressor=ctx.createDynamicsCompressor();compressor.threshold.value=-8;compressor.knee.value=6;compressor.ratio.value=2.2;compressor.attack.value=.004;compressor.release.value=.17;master.connect(compressor).connect(ctx.destination)}
   // iOS: resume immediately in the click-initiated path, before fetch/decode await.
   await ctx.resume();
-  if(!Object.keys(bank).length){
+  if(!bank.on_low&&!bank.on_high){
+   for(const n of Object.values(bank)){try{n.source.stop()}catch{}}bank={};
    const entries=await Promise.all(Object.entries(SOURCES).map(async([key,cfg])=>{
-    try{const res=await fetch(PATH+cfg.file,{cache:'force-cache'});if(!res.ok)throw Error('HTTP '+res.status);const buffer=await ctx.decodeAudioData(await res.arrayBuffer());return [key,{buffer,...cfg}]}catch(error){console.warn('Falha ao carregar',key,error);return [key,null]}
+    try{const url=new URL(PATH+cfg.file,document.baseURI).href;
+      const res=await fetch(url,{cache:'no-store'});
+      if(!res.ok)throw Error('HTTP '+res.status+' · '+url);
+      const ab=await res.arrayBuffer();const first=String.fromCharCode(...new Uint8Array(ab.slice(0,4)));
+      if(first!=='RIFF')throw Error('Resposta não é WAV (primeiros bytes: '+first+') · '+url);
+      const buffer=await ctx.decodeAudioData(ab);
+      DIAG.assets[key]={file:cfg.file,url,status:res.status,bytes:ab.byteLength,valid:true,decoded:true};
+      return [key,{buffer,...cfg}]
+     }catch(error){const url=new URL(PATH+cfg.file,document.baseURI).href;
+      console.warn('Falha ao carregar',key,error);DIAG.assets[key]={file:cfg.file,url,valid:false,decoded:false,error:String(error.message||error)};
+      eventLog('ASSET','Falha '+key+': '+String(error.message||error));return [key,null]}
    }));
    for(const [key,obj] of entries){if(!obj)continue;const source=ctx.createBufferSource();source.buffer=obj.buffer;source.loop=true;const gain=ctx.createGain();gain.gain.value=0;source.connect(gain).connect(master);source.start();bank[key]={...obj,source,gain}}
-   if(!bank.on_low&&!bank.on_high)throw Error('WAVs de aceleração não carregaram. Verifique se /audio/procar/*.wav existe na publicação HTTPS.');
+   if(!bank.on_low&&!bank.on_high){const failed=['on_low','on_high'].map(k=>k+': '+(DIAG.assets[k]?.error||'indisponível')).join(' | ');throw Error('WAVs de aceleração indisponíveis: '+failed)}
   }
-  if(ctx.state!=='running'){await ctx.resume();if(ctx.state!=='running')throw Error('Áudio bloqueado no navegador: pressione Iniciar novamente.')}running=true;state.lastFrame=performance.now();if(realEnabled()){if($('gpsFallback').checked)startGpsFallback();if(OBD.connected)startObdLoop();else $('status').textContent='Conecte o OBDBLE. O motor aguarda dados reais.';}$('startBtn').textContent='■ Parar motor';$('startBtn').classList.add('stop');$('engineState').textContent='Motor em funcionamento';$('status').textContent=Object.keys(bank).length+' amostras WAV ativas. Ajuste o acelerador.';ramp(master.gain,Number($('volume').value)/100,.08);
- }catch(e){$('status').textContent='Erro: '+e.message;console.error(e)}finally{loading=false;$('startBtn').disabled=false}
+  if(ctx.state!=='running'){await ctx.resume();if(ctx.state!=='running')throw Error('Áudio bloqueado no navegador: pressione Iniciar novamente.')}DIAG.audioState='running';eventLog('AUDIO','Áudio ativo: '+Object.keys(bank).length+' WAVs');running=true;state.lastFrame=performance.now();if(realEnabled()){if($('gpsFallback').checked)startGpsFallback();if(OBD.connected)startObdLoop();else $('status').textContent='Conecte o OBDBLE. O motor aguarda dados reais.';}$('startBtn').textContent='■ Parar motor';$('startBtn').classList.add('stop');$('engineState').textContent='Motor em funcionamento';$('status').textContent=Object.keys(bank).length+' WAVs ativos · '+(realEnabled()?'Pedal real (OBDBLE)':'Acelerador manual')+'.';updateDiagnosticSummary();ramp(master.gain,Number($('volume').value)/100,.08);
+ }catch(e){DIAG.audioState='erro: '+e.message;eventLog('ERROR','Áudio: '+e.message);$('status').textContent='Erro: '+e.message+' · Ver Diagnóstico no final';console.error(e)}finally{loading=false;$('startBtn').disabled=false}
 }
-function stop(){running=false;stopGpsFallback();state.demo=false;state.targetThrottle=0;state.throttle=0;$('throttle').value='0';$('demo').textContent='▶ Teste de condução automático';$('startBtn').textContent='▶ Iniciar motor e áudio';$('startBtn').classList.remove('stop');$('engineState').textContent='Motor parado';$('status').textContent='Áudio parado';if(master)ramp(master.gain,0,.035);for(const n of Object.values(bank))ramp(n.gain.gain,0,.02)}
+function stop(){DIAG.audioState='parado';eventLog('AUDIO','Motor parado');running=false;stopGpsFallback();state.demo=false;state.targetThrottle=0;state.throttle=0;$('throttle').value='0';$('demo').textContent='▶ Teste de condução automático';$('startBtn').textContent='▶ Iniciar motor e áudio';$('startBtn').classList.remove('stop');$('engineState').textContent='Motor parado';$('status').textContent='Áudio parado';if(master)ramp(master.gain,0,.035);for(const n of Object.values(bank))ramp(n.gain.gain,0,.02)}
 function ease(current,target,dt,tau){return current+(target-current)*(1-Math.exp(-dt/Math.max(.001,tau)))}
 function setPedal(v){state.targetThrottle=clamp(Number(v)||0,0,100)/100;$('throttle').value=String(Math.round(state.targetThrottle*100));$('sliderReadout').textContent=Math.round(state.targetThrottle*100)+'%'}
 const highLow=rpm=>clamp((rpm-2900)/(7000-2900),0,1);
@@ -222,14 +421,13 @@ function tick(t){requestAnimationFrame(tick);let dt=clamp((t-state.lastFrame)/10
   setPedal(target*100);
   if(x>=33.9)state.demoTime=0;
  }
- if(realEnabled())simulateLive(dt,t);else{OBD.source='SIMULAÇÃO';$('speedSource').textContent='SIMULAÇÃO';simulate(dt,t)}mix();
+ if(realEnabled())simulateLive(dt,t);else{OBD.source='SIMULAÇÃO';$('speedSource').textContent='SIMULAÇÃO';simulate(dt,t)}mix();collectSnapshot(t);
  $('rpm').textContent=Math.round(state.rpm).toLocaleString('pt-BR');$('speed').textContent=Math.round(state.speed);$('gear').textContent=realEnabled()&&!['D','ECO'].includes(effectiveSelector())?effectiveSelector():state.gear;$('pedal').textContent=realEnabled()?Math.round(state.rawPedal):Math.round(state.throttle*100);$('rpmFill').style.width=(state.rpm/MAX_RPM*100)+'%';$('peak').classList.toggle('active',state.rpm>8700);
  if(t-state.lastFrameS>200){if(realEnabled()){renderSelector();updateTorqueUi()}$('engineState').textContent=realEnabled()?(!['D','ECO'].includes(effectiveSelector())?'Seletor '+effectiveSelector()+' · marcha lenta':OBD.source==='SEM VELOCIDADE'?'A aguardar CAN/GPS':state.throttle>.12?'Acelerando · Leaf':state.speed>1?'Desacelerando · e-Pedal':'D · marcha lenta'):state.throttle>.12?'Acelerando':state.speed>1?'Desacelerando · motor engrenado':'Marcha lenta';state.lastFrameS=t}
 }
 requestAnimationFrame(tick);
 $('startBtn').addEventListener('click',audioStart);
 $('throttle').addEventListener('input',e=>{state.demo=false;$('demo').textContent='▶ Teste de condução automático';setPedal(e.target.value)});
-$('release').addEventListener('click',()=>{state.demo=false;$('demo').textContent='▶ Teste de condução automático';setPedal(0)});
 const bindHold=(id,down,up)=>{const el=$(id);el.addEventListener('pointerdown',e=>{e.preventDefault();try{el.setPointerCapture(e.pointerId)}catch{};down()});for(const ev of ['pointerup','pointercancel','lostpointercapture'])el.addEventListener(ev,up)};
 bindHold('fullThrottle',()=>{state.demo=false;setPedal(100)},()=>setPedal(0));
 bindHold('brake',()=>{state.brake=true},()=>{state.brake=false});
